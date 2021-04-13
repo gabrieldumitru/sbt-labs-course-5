@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using sbt_labs_course_5.Models;
 using sbt_labs_course_5.Models.Constants;
 using sbt_labs_course_5.Models.Entities;
@@ -89,7 +90,31 @@ namespace sbt_labs_course_5
 
             services.AddMemoryCache();
 
-           
+            services.AddSwaggerGen(s =>
+            {
+                s.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = "JWT Authorization header using the Bearer scheme (Example: 'Bearer 12345abcdef')",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
+                });
+                s.AddSecurityRequirement(new OpenApiSecurityRequirement
+               {
+                   {
+                       new OpenApiSecurityScheme
+                       {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        Array.Empty<string>()
+                    }
+               });
+            });
 
             services.AddControllers();
         }
@@ -101,6 +126,14 @@ namespace sbt_labs_course_5
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+            });
+
+            // link swagger -> localhost/swagger/index.html
 
             app.UseHttpsRedirection();
 

@@ -17,15 +17,9 @@ namespace sbt_labs_course_5.Controllers.BookControllers
     [Route("api/[controller]")]
     public class BookController : ControllerBase
     {
-        private readonly IRepositoryWrapper _repository;
-        private readonly UserManager<User> _userManager;
         private readonly IBookService _bookService;
-        public BookController(IRepositoryWrapper repository,
-                                       UserManager<User> userManager,
-                                       IBookService bookService)
+        public BookController(IBookService bookService)
         {
-            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
-            _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
             _bookService = bookService ?? throw new ArgumentNullException(nameof(bookService));
         }
 
@@ -92,7 +86,7 @@ namespace sbt_labs_course_5.Controllers.BookControllers
 
         [Route("{id}")]
         [HttpDelete]
-        public async Task<IActionResult> DeleteBook([FromQuery] Guid id)
+        public async Task<IActionResult> DeleteBook(Guid id)
         {
             try
             {
