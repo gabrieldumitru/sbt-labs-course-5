@@ -17,6 +17,7 @@ namespace sbt_labs_course_5.Models
         public ApplicationDbContext(DbContextOptions options) : base(options) { }
 
         public DbSet<SessionToken> SessionTokens { get; set; }
+        public DbSet<Book> Books { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

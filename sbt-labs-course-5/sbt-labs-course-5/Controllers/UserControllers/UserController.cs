@@ -28,6 +28,7 @@ namespace sbt_labs_course_5.Controllers.UserControllers
             _userService = userService ?? throw new ArgumentNullException(nameof(userService));
         }
 
+        [Authorize(Roles="Admin")]
         [HttpGet("")]
         public async Task<IActionResult> GetAllUsers()
         {

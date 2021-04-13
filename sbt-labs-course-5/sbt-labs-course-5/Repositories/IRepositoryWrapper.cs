@@ -1,5 +1,4 @@
 ﻿using sbt_labs_course_5.Repositories;
-using sbt_labs_course_5.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +10,7 @@ namespace sbt_labs_course_5.Repositories
     {
         IUserRepository User { get; }
         ISessionTokenRepository SessionToken { get; }
+        IBookRepository Book { get; }
         Task SaveAsync();
     }
 }

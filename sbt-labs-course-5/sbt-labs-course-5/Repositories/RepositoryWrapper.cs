@@ -12,6 +12,7 @@ namespace sbt_labs_course_5.Repositories
         private readonly ApplicationDbContext _context;
         private IUserRepository _user;
         private ISessionTokenRepository _sessionToken;
+        private IBookRepository _bookRepository;
 
         public RepositoryWrapper(ApplicationDbContext context)
         {
@@ -33,6 +34,15 @@ namespace sbt_labs_course_5.Repositories
             {
                 if (_sessionToken == null) _sessionToken = new SessionTokenRepository(_context);
                 return _sessionToken;
+            }
+        }
+
+        public IBookRepository Book
+        {
+            get
+            {
+                if (_bookRepository == null) _bookRepository = new BookRepository(_context);
+                return _bookRepository;
             }
         }
 

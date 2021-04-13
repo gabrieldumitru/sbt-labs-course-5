@@ -14,7 +14,7 @@ namespace sbt_labs_course_5.Repositories.GenericRepository
 
         Task<TEntity> GetByIdAsync(Guid id);
 
-        IEnumerable<TEntity> GetAll();
+        IQueryable<TEntity> GetAll();
 
         void Update(TEntity entity);
 

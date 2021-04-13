@@ -1,4 +1,5 @@
-﻿using sbt_labs_course_5.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using sbt_labs_course_5.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,9 +32,9 @@ namespace sbt_labs_course_5.Repositories.GenericRepository
             return await _context.Set<TEntity>().FindAsync(id);
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public IQueryable<TEntity> GetAll()
         {
-            return _context.Set<TEntity>().ToList();
+            return _context.Set<TEntity>().AsNoTracking();
         }
 
         public void Update(TEntity entity)

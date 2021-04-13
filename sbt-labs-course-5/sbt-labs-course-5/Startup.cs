@@ -16,6 +16,7 @@ using sbt_labs_course_5.Models;
 using sbt_labs_course_5.Models.Constants;
 using sbt_labs_course_5.Models.Entities;
 using sbt_labs_course_5.Repositories;
+using sbt_labs_course_5.Services.BookServices;
 using sbt_labs_course_5.Services.UserServices;
 using System;
 using System.Collections.Generic;
@@ -43,6 +44,7 @@ namespace sbt_labs_course_5
             });
 
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IBookService, BookService>();
             services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
 
             services.AddIdentity<User, Role>(options =>
