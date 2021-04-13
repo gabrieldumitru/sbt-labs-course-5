@@ -104,6 +104,7 @@ namespace sbt_labs_course_5
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
